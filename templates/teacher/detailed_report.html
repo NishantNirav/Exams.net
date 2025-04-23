@@ -1,0 +1,123 @@
+{% extends 'teacher/index.html' %}
+{% block content %}
+  <div class="container">
+    <!-- Exam Details Table -->
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center;">Exam Name</th>
+          <td colspan="6">
+            <strong>{{ exam.exam_name }}</strong>
+          </td>
+        </tr>
+        <tr>
+          <th>Question Paper Name</th>
+          <td colspan="6">
+            <strong>{{ paper.paper_name }}</strong>
+          </td>
+        </tr>
+        <tr>
+          <th>Exam Date</th>
+          <td>{{ exam.exam_date }}</td>
+          <th>Exam Time</th>
+          <td>{{ exam.exam_time }}</td>
+          <th>Duration</th>
+          <td colspan="2">{{ exam.exam_duration }}</td>
+        </tr>
+      </thead>
+    </table>
+
+    <!-- Student Results Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Student Name</th>
+          <th>Marks Scored</th>
+          <th>Total Marks</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in student_results %}
+          <tr>
+            <td>{{ student.student_id }}</td>
+            <td>{{ student.student_id__username }}</td>
+            <td>{{ student.total_scored }}</td>
+            <td>{{ student.total_marks }}</td>
+            <td><a href="/teacher/detailed-report/student-response/{{exam.exam_id}}/{{paper.paper_id}}/{{student.student_id}}/">View Response</a></td>
+
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="4">No student data available for this report.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <style>
+    .header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .container {
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 1100px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table th,
+    table td {
+      padding: 12px;
+      border: 1px solid #dee2e6;
+      text-align: center;
+      font-size: 1rem;
+    }
+    table thead {
+      background-color: #007bff;
+      color: white;
+    }
+    table tbody tr:nth-child(even) {
+      background-color: #f2f7ff;
+    }
+    table tbody tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+    table tbody tr:hover {
+      background-color: #dceeff;
+    }
+    table th {
+      font-weight: bold;
+    }
+    table thead tr:first-child th {
+      text-align: left;
+    }
+    @media (max-width: 768px) {
+      body {
+        font-size: 0.9rem;
+      }
+      .header {
+        font-size: 1.5rem;
+        padding: 15px;
+      }
+      table th,
+      table td {
+        padding: 8px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+{% endblock %}

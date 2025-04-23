@@ -1,0 +1,52 @@
+{% extends 'teacher/index.html' %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 50px auto; padding: 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h2 style="color: #007bff; text-align: center; margin-bottom: 20px;">Update Exam</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="exam_name" style="display: block; margin-bottom: 8px; font-weight: bold;">Exam Name:</label>
+        <input 
+            type="text" 
+            name="exam_name" 
+            id="exam_name" 
+            value="{{ exam.exam_name }}" 
+            required 
+            style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 20px;">
+
+        <label for="exam_date" style="display: block; margin-bottom: 8px; font-weight: bold;">Exam Date:</label>
+        <input 
+            type="date" 
+            name="exam_date" 
+            id="exam_date" 
+            value="{{ exam.exam_date|date:'Y-m-d' }}" 
+            required 
+            style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 20px;">
+
+        <label for="exam_time" style="display: block; margin-bottom: 8px; font-weight: bold;">Exam Time:</label>
+        <input 
+            type="time" 
+            name="exam_time" 
+            id="exam_time" 
+            value="{{ exam.exam_time|time:'H:i' }}" 
+            required 
+            style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 20px;">
+
+        <label for="exam_duration" style="display: block; margin-bottom: 8px; font-weight: bold;">Exam Duration (HH:MM:SS):</label>
+        <input 
+            type="text" 
+            name="exam_duration" 
+            id="exam_duration" 
+            value="{{ exam.exam_duration }}" 
+            required 
+            placeholder="e.g., 01:30:00" 
+            style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 20px;">
+        
+        <button 
+            type="submit" 
+            style="width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Update Exam
+        </button>
+    </form>
+</div>
+{% endblock %}

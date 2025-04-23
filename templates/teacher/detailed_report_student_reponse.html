@@ -1,0 +1,205 @@
+{% extends "teacher/index.html" %}
+{% block content %}
+
+<div class="container">
+    {% if question_data %}      
+  <table>
+    <thead>
+      <tr>
+        <th>Examination</th>
+        <th>Paper</th>
+        <th>Student</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ question_data.0.exam.exam_name }}</td>
+        <td>{{ question_data.0.paper.paper_name }}</td>
+        <td>{{ student.username }}</td>
+      </tr>
+    </tbody>
+  </table>
+  {% endif %}
+  <br>
+  <hr>
+  <br>
+  <div class="card">
+      {% comment %} <h2>Exam: {{ question_data.0.exam.exam_name }} | Paper: {{ question_data.0.paper.paper_name }}</h2> {% endcomment %}
+
+      {% if question_data %}
+        <table>
+          <thead>
+            <tr>
+              <th colspan="5" style="text-align: center;"><h2>Student Response</h2></th>
+            </tr>
+            <tr>
+              <th>Question</th>
+              <th>Options</th>
+              <th>Correct Option</th>
+              <th>Your Selection</th>
+              <th>Marks Awarded</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in question_data %}
+              <tr>
+                <td>{{ item.question.question_text }}</td>
+                <td>
+                  <ul>
+                    <li>1. {{ item.question.option1 }}</li>
+                    <li>2. {{ item.question.option2 }}</li>
+                    <li>3. {{ item.question.option3 }}</li>
+                    <li>4. {{ item.question.option4 }}</li>
+                  </ul>
+                </td>
+                <td>Option {{ item.correct_option }}</td>
+                <td>Option {{ item.selected_option }}</td>
+                <td>{{ item.marks_awarded }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No attempted questions found.</p>
+      {% endif %}
+    </div>
+  </div>
+  <style>
+    /* Global Reset */
+    {% comment %} * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      background-color: #f4f7fc;
+      color: #333;
+    }
+    
+    .container {
+      width: 80%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+    
+    h1,
+    h2,
+    h3 {
+      color: #333;
+      font-weight: bold;
+    }
+    
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+     {% endcomment %}
+    /* Card styling */
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    
+    .card h3 {
+      margin-bottom: 10px;
+    }
+    
+    .card p {
+      margin-bottom: 5px;
+    }
+    
+    /* Table styling */
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    
+    table th,
+    table td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    
+    table th {
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    
+    table td {
+      background-color: #fff;
+    }
+    
+    table tr:nth-child(even) td {
+      background-color: #f9f9f9;
+    }
+    
+    table a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    
+    table a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Button styling */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    
+    /* Responsive styling */
+    @media (max-width: 768px) {
+      .container {
+        width: 95%;
+      }
+    
+      h1 {
+        font-size: 1.6rem;
+      }
+    
+      h2 {
+        font-size: 1.4rem;
+      }
+    
+      h3 {
+        font-size: 1.1rem;
+      }
+    
+      table th,
+      table td {
+        padding: 8px;
+      }
+    }
+  </style>
+{% endblock %}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Responses</title>
+</head>
+<body>
+    <h1>Answer All Questions</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="exam_id" value="{{ exam_id }}">
+        <input type="hidden" name="paper_id" value="{{ paper_id }}">
+
+        {% for question in questions %}
+        <div>
+            <h3>{{ question.question_text }}</h3>
+
+            <label>
+                <input type="radio" name="selection_{{ question.question_id }}" value="1">
+                {{ question.option1 }}
+            </label><br>
+
+            <label>
+                <input type="radio" name="selection_{{ question.question_id }}" value="2">
+                {{ question.option2 }}
+            </label><br>
+
+            <label>
+                <input type="radio" name="selection_{{ question.question_id }}" value="3">
+                {{ question.option3 }}
+            </label><br>
+
+            <label>
+                <input type="radio" name="selection_{{ question.question_id }}" value="4">
+                {{ question.option4 }}
+            </label><br>
+
+            <input type="hidden" name="total_marks_{{ question.question_id }}" value="{{ question.marks }}">
+        </div>
+        <hr>
+        {% endfor %}
+
+        <button type="submit">Save Responses</button>
+    </form>
+
+    <br>
+    {% comment %} <a href="{% url 'view_exam_results' exam_id=exam_id %}">View Exam Results</a> {% endcomment %}
+</body>
+</html>

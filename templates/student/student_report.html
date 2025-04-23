@@ -1,0 +1,53 @@
+{% extends 'student/index.html' %}
+{% block content %}
+  <div class="container" style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
+    <h2 style="color: #007bff; text-align: center; margin-bottom: 20px;">Attempted Exams</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+      <thead>
+        <tr style="background-color: #007bff; color: white;">
+          <th style="padding: 12px; text-align: left;">Exam Name</th>
+          <th style="padding: 12px; text-align: left;">Paper</th>
+          <th style="padding: 12px; text-align: left;">Exam Date</th>
+          <th style="padding: 12px; text-align: left;">Exam Time</th>
+          <th style="padding: 12px; text-align: left;">Max Marks</th>
+          <th style="padding: 12px; text-align: left;">Scorred Marks</th>
+          <th style="padding: 12px; text-align: left;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for paper_data in report_data %}
+          <tr style="background-color: {% cycle '#ffffff' '#f2f2f2' %}; border-bottom: 1px solid #ddd;">
+            <td style="padding: 12px;">{{ paper_data.exam.exam_name }}</td>
+            <td style="padding: 12px;">{{ paper_data.paper}}</td>
+            <td style="padding: 12px;">{{ paper_data.exam.exam_date }}</td>
+            <td style="padding: 12px;">{{ paper_data.exam.exam_time }}</td>
+            <td style="padding: 12px;">{{ paper_data.total_score }}</td>
+            <td style="padding: 12px;">{{ paper_data.marks_scored }}</td>
+            <td>
+              <a href="/student/attempted-questions/{{paper_data.exam.exam_id}}/{{paper_data.paper.paper_id}}" style="text-decoration: none; color: #fff; background-color: #007bff; padding: 5px 10px; border-radius: 4px; margin-right: 5px;font-weight: 400;">Anaylise</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <style>
+    @media (max-width: 600px) {
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        display: block;
+      }
+      tr {
+        margin-bottom: 0.625em;
+      }
+      td {
+        text-align: left;
+        padding-left: 0.625em;
+      }
+    }
+  </style>
+{% endblock %}

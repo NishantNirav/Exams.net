@@ -1,0 +1,55 @@
+{% extends 'student/index.html' %}
+{% block content %}
+  <div class="container" style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
+    <p style="display: flex; justify-content: right;align-items: center;">
+      <a href="/student/exams/" style="text-decoration: none; color: #fff; background-color: #007bff; padding: 5px 10px; border-radius: 4px; margin-right: 5px;font-weight: 700;">Today Exams</a>
+      <a href="/student/upcomming-exams/" style="text-decoration: none; color: #fff; background-color: #007bff; padding: 5px 10px; border-radius: 4px; margin-right: 5px;font-weight: 700;">Upcomming Exams</a>
+    </p>
+    <h2 style="color: #007bff; text-align: center; margin-bottom: 20px;">Past Exams</h2>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+      <thead>
+        <tr style="background-color: #007bff; color: white;">
+          <th style="padding: 12px; text-align: left;">Exam Name</th>
+          <th style="padding: 12px; text-align: left;">Exam Date</th>
+          <th style="padding: 12px; text-align: left;">Exam Time</th>
+          <th style="padding: 12px; text-align: left;">Exam Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for exam in exams %}
+          <tr style="background-color: {% cycle '#ffffff' '#f2f2f2' %}; border-bottom: 1px solid #ddd;">
+            <td style="padding: 12px;">{{ exam.exam_name }}</td>
+            <td style="padding: 12px;">{{ exam.exam_date }}</td>
+            <td style="padding: 12px;">{{ exam.exam_time }}</td>
+            <td style="padding: 12px;">{{ exam.exam_duration }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5" style="padding: 12px; text-align: center;">No exams available</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <style>
+    @media (max-width: 600px) {
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        display: block;
+      }
+      tr {
+        margin-bottom: 0.625em;
+      }
+      td {
+        text-align: left;
+        padding-left: 0.625em;
+      }
+    }
+  </style>
+{% endblock %}

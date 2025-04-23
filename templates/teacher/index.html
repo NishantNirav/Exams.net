@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, 
+                   initial-scale=1.0" />
+    <title>Exam Management Portal </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+    </head>
+
+  <body>
+    <!-- for header part -->
+    <header>
+      <div class="logosec">
+        <div class="logo">Teacher Dashboard</div>
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210182541/Untitled-design-(30).png" class="icn menuicn" id="menuicn" alt="menu-icon" />
+      </div>
+      <div class="message">
+        <div class="circle"></div>
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/8.png" class="icn" alt="" />
+        <div class="dp">
+          <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png" class="dpicn" alt="dp" />
+        </div>
+      </div>
+    </header>
+
+    <div class="main-container">
+      <div class="navcontainer">
+        <nav class="nav">
+          <div class="nav-upper-options">
+            <div class="nav-option option1">
+              <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210182148/Untitled-design-(29).png" class="nav-img" alt="dashboard" />
+              <a href="/teacher"><h3>Dashboard</h3></a>
+            </div>
+
+            <div class="option2 nav-option">
+              <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/9.png" class="nav-img" alt="articles" />
+              <a href="/teacher/exams"><h3>Exams</h3></a>
+            </div>
+
+
+            <div class="option2 nav-option">
+              <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/9.png" class="nav-img" alt="articles" />
+              <a href="/teacher/question-paper/"><h3>Question <br> Paper</h3></a>
+            </div>
+
+            
+            <div class="nav-option option3">
+              <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png" class="nav-img" alt="report" />
+              <a href="/teacher/reports"><h3>Reports</h3></a>
+            </div>
+
+            <div class="nav-option logout">
+              <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/7.png" class="nav-img" alt="logout" />
+              <a href="/auth/logout"><h3>Logout</h3></a>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="main">
+        {% block content %}
+        <!-- Default content can go here -->
+        {% endblock %}
+      </div>
+    </div>
+    <script src="{% static 'js/index.js'%}"></script>
+    
+  </body>
+</html>

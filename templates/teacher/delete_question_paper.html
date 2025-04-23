@@ -1,0 +1,12 @@
+{% extends 'teacher/index.html' %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 50px auto; padding: 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h2 style="color: #007bff; text-align: center; margin-bottom: 20px;">Delete Question Paper</h2>
+    <p>Are you sure you want to delete the question paper <strong>{{ paper.paper_name }}</strong>?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" style="width: 100%; padding: 12px; background-color: #ff4d4d; color: white; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
+    </form>
+</div>
+{% endblock %}

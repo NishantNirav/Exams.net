@@ -1,0 +1,39 @@
+{% extends "teacher/index.html" %}
+{% block content %}
+<div class="container" style="max-width: 1200px; margin: 2rem auto; padding: 1rem; background-color: white; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
+      <thead>
+        <tr>
+            <th colspan="7" style="background-color: #007bff; color: #f7f700; text-transform: uppercase; font-size: 1.9rem;">Examination Repost Summary</th>
+        </tr>
+        <tr style="background-color: #007bff; color: white; text-transform: uppercase; font-size: 0.9rem;">
+          <th style="padding: 0.8rem; border: 1px solid #dee2e6;">Exam Name</th>
+          <th style="padding: 0.8rem; border: 1px solid #dee2e6;">Question Paper Name</th>
+          <th style="padding: 0.8rem; border: 1px solid #dee2e6;">Exam Date</th>
+          <th style="padding: 0.8rem; border: 1px solid #dee2e6;">Exam Time</th>
+          <th style="padding: 0.8rem; border: 1px solid #dee2e6;">Duration</th>
+          <th style="padding: 0.8rem; border: 1px solid #dee2e6;">Students Attended</th>
+          <th style="padding: 0.8rem; border: 1px solid #dee2e6;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in report_data %}
+          <tr>
+            <td style="padding: 0.8rem; border: 1px solid #dee2e6;">{{ data.exam_name }}</td>
+            <td style="padding: 0.8rem; border: 1px solid #dee2e6;">{{ data.paper_name }}</td>
+            <td style="padding: 0.8rem; border: 1px solid #dee2e6;">{{ data.exam_date }}</td>
+            <td style="padding: 0.8rem; border: 1px solid #dee2e6;">{{ data.exam_time }}</td>
+            <td style="padding: 0.8rem; border: 1px solid #dee2e6;">{{ data.exam_duration }}</td>
+            <td style="padding: 0.8rem; border: 1px solid #dee2e6;">{{ data.students_attended }}</td>
+            <td style="padding: 0.8rem; border: 1px solid #dee2e6; text-align: center;">
+              <form action="{% url 'detailed_report' data.exam_id data.paper_id %}" method="get">
+                <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 0.5rem 1rem; font-size: 0.9rem; cursor: pointer; border-radius: 4px;">Detailed Report</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+{% endblock %}
